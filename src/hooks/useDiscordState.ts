@@ -37,7 +37,7 @@ export const useDiscordState = <T>(
                 op: 2,
                 d: {
                   token: config.botToken,
-                  intents: 32768,
+                  intents: 33281,
                   properties: {
                     $os: "linux",
                     $browser: "ZustandHA",
