@@ -10,7 +10,7 @@ import { persist } from "zustand/middleware";
 import { decodeStateFromSouthPark } from "../libs/decode";
 import { encodeStatetoSouthPark } from "../libs/encode";
 
-export const useDiscordState = <T>(
+export const createDiscordCluster = <T>(
   initialState: T,
   config: DiscordClusterConfig,
   storageKey: string = "south-park-dr-backup",

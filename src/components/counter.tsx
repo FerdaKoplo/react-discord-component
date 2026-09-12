@@ -1,8 +1,8 @@
-import { useDiscord } from "../zustand/store";
+import { useDiscordState } from "../zustand/store";
 
 const Counter = () => {
-  const count = useDiscord((state) => state.state.count);
-  const setDiscordState = useDiscord((state) => state.setDiscordState);
+  const count = useDiscordState((state) => state.state.count);
+  const setDiscordState = useDiscordState((state) => state.setDiscordState);
 
   return (
     <button

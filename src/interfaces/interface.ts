@@ -25,7 +25,20 @@ export interface DiscordStore<T> {
   setDiscordState: (newState: T) => Promise<void>;
 }
 
+export interface BlobStore {
+  latestImage: string | null;
+  isUploading: boolean;
+  uploadImageToDiscord: (file: File) => Promise<void>;
+}
+
 export interface MyAppState {
   count: number;
   user: string;
+}
+
+export interface ImageChunkPacket {
+  id: string;
+  idx: number;
+  total: number;
+  data: string;
 }
