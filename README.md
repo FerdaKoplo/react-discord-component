@@ -21,17 +21,17 @@ NoSQL blob storage engine built entirely on top of Discord's infrastructure. It 
 
 **2. Install the Project**
 
-1. **Install Dependencies**
+- **Install Dependencies**
 
 ```bash
 npm install
 ```
 
-2. **Start the Development Server, ensure you restart this anytime you update your .env or vite.config.ts)**
-   Spin up the MySQL container using Docker Compose:
+- **Start the Development Server, ensure you restart this anytime you update your .env or vite.config.ts)**
+  Spin up the MySQL container using Docker Compose:
 
 ```bash
-docker compose up -d
+npm run dev
 ```
 
 **3. Environment Variables**
@@ -45,4 +45,35 @@ VITE_DISCORD_CHANNEL_ID=
 
 VITE_BLOB_DISCORD_WEBHOOK_URL=
 VITE_BLOB_DISCORD_CHANNEL_ID=
+```
+
+4. Setting Up Vite Config
+   Update your Vite configuration to intercept Discord API calls and spoof a secure backend environment to bypass CORS and 403 Forbidden errors:
+
+```vite.config.ts
+  server: {
+    proxy: {
+      "/discord-api": {
+        target: "https://discord.com/api/v10",
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/discord-api/, ""),
+        configure: (proxy, _options) => {
+          proxy.on("proxyReq", (proxyReq, req, _res) => {
+            proxyReq.setHeader(
+              "User-Agent",
+              "DiscordBot (https://github.com/my-cluster, 1.0.0)",
+            );
+
+            proxyReq.removeHeader("Origin");
+            proxyReq.removeHeader("Referer");
+            proxyReq.removeHeader("sec-ch-ua");
+          });
+        },
+      },
+    },
+  },
+```
+
+```
+
 ```
