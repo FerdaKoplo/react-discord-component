@@ -28,7 +28,6 @@ npm install
 ```
 
 - **Start the Development Server, ensure you restart this anytime you update your .env or vite.config.ts)**
-  Spin up the MySQL container using Docker Compose:
 
 ```bash
 npm run dev
