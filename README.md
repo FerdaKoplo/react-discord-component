@@ -73,7 +73,3 @@ VITE_BLOB_DISCORD_CHANNEL_ID=
     },
   },
 ```
-
-```
-
-```
