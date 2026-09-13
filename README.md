@@ -47,8 +47,8 @@ VITE_BLOB_DISCORD_WEBHOOK_URL=
 VITE_BLOB_DISCORD_CHANNEL_ID=
 ```
 
-4. Setting Up Vite Config
-   Update your Vite configuration to intercept Discord API calls and spoof a secure backend environment to bypass CORS and 403 Forbidden errors:
+4.**Setting Up Vite Config**
+Update your Vite configuration to intercept Discord API calls and spoof a secure backend environment to bypass CORS and 403 Forbidden errors:
 
 ```vite.config.ts
   server: {
