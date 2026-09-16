@@ -2,12 +2,10 @@ import type { ChangeEvent } from "react";
 import ImageDatabaseViewer from "../components/image-view";
 import Title from "../components/shared/title";
 import { useDiscordBlob } from "../zustand/store";
-import Input from "../components/shared/input";
 import { FaFile } from "react-icons/fa";
 import FileInput from "../components/shared/file-input";
 import Loading from "../components/shared/loading";
 import Frame from "../components/shared/frame";
-import Counter from "../components/counter";
 
 const Home = () => {
   const latestImage = useDiscordBlob((state) => state.latestImage);
@@ -15,13 +13,6 @@ const Home = () => {
   const uploadImageToDiscord = useDiscordBlob(
     (state) => state.uploadImageToDiscord,
   );
-
-  // const handleIncrement = () => {
-  //   setDiscordState({
-  //     count: count + 1,
-  //     user: count % 2 === 0 ? "Cartman" : "Kenny",
-  //   });
-  // };
 
   const handleFileSelected = async (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -32,7 +23,6 @@ const Home = () => {
 
   return (
     <div className="flex flex-col justify-eenter bg-neutral-50  items-center">
-      {/* <Counter /> */}
       <div className="flex gap-20  justify-center items-center  w-full min-h-screen ">
         <ImageDatabaseViewer />
         <div className="flex flex-col items-start justify-start gap-8 ">

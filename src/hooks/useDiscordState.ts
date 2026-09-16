@@ -60,6 +60,11 @@ export const createDiscordCluster = <T>(
           }
         };
 
+        ws.onclose = () => {
+          if (heartbeatInterval) {
+            window.clearInterval(heartbeatInterval);
+          }
+        };
         return {
           state: initialState,
           setDiscordState: async (newState: T) => {

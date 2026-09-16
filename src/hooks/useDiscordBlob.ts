@@ -79,6 +79,11 @@ export const createDiscordBlobStore = (config: DiscordClusterConfig) => {
       }
     };
 
+    ws.onclose = () => {
+      if (heartbeatInterval) {
+        window.clearInterval(heartbeatInterval);
+      }
+    };
     return {
       latestImage: null,
       isUploading: false,

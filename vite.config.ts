@@ -12,7 +12,7 @@ export default defineConfig({
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/discord-api/, ""),
         configure: (proxy, _options) => {
-          proxy.on("proxyReq", (proxyReq, req, _res) => {
+          proxy.on("proxyReq", (proxyReq) => {
             proxyReq.setHeader(
               "User-Agent",
               "DiscordBot (https://github.com/my-cluster, 1.0.0)",
