@@ -9,7 +9,7 @@ export const queryBlobFromDiscord = async (
 ): Promise<string | null> => {
   try {
     const response = await fetch(
-      `/api/discord/channels/${config.channelId}/...`,
+      `/api/discord/channels/${config.channelId}/messages?limit=100`,
       {
         method: "GET",
         headers: {
@@ -69,7 +69,7 @@ export const scanForRecentImages = async (
 ): Promise<string[]> => {
   try {
     const response = await fetch(
-      `/discord-api/channels/${config.channelId}/messages?limit=100`,
+      `/api/discord/channels/${config.channelId}/messages?limit=100`,
       {
         method: "GET",
         headers: { Authorization: `Bot ${config.botToken}` },
