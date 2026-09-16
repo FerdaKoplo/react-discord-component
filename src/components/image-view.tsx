@@ -1,9 +1,12 @@
 import { useState } from "react";
-import { blobConfig, useDiscordBlob } from "../zustand/store";
+import { blobConfig } from "../zustand/store";
 import {
   queryBlobFromDiscord,
   scanForRecentImages,
 } from "../hooks/useQueryDiscordBlob";
+import Button from "./shared/button";
+import { IoIosSearch } from "react-icons/io";
+import Title from "./shared/title";
 
 const ImageDatabaseViewer = () => {
   const [queriedImage, setQueriedImage] = useState<string | null>(null);
@@ -27,14 +30,15 @@ const ImageDatabaseViewer = () => {
   };
 
   return (
-    <div>
-      <h3>NoSQL Database Inspector</h3>
-
+    <div className="flex flex-col gap-12 items-start ">
+      <Title text="GO Search Something" size="xl" className="font-sans" />
       <div>
-        <button onClick={handleScan} disabled={isScanning}>
-          {isScanning ? "Scanning Cluster..." : "Scan For Recent Images"}
-        </button>
-
+        <Button
+          onClick={handleScan}
+          disabled={isScanning}
+          label={isScanning ? "Scanning Cluster..." : "Scan For Recent Images"}
+          icon={<IoIosSearch />}
+        />
         {availableIds.length > 0 && (
           <div>
             <p>Found Records:</p>
