@@ -7,6 +7,7 @@ import { FaFile } from "react-icons/fa";
 import FileInput from "../components/shared/file-input";
 import Loading from "../components/shared/loading";
 import Frame from "../components/shared/frame";
+import Counter from "../components/counter";
 
 const Home = () => {
   const latestImage = useDiscordBlob((state) => state.latestImage);
@@ -31,6 +32,7 @@ const Home = () => {
 
   return (
     <div className="flex flex-col justify-eenter bg-neutral-50  items-center">
+      {/* <Counter /> */}
       <div className="flex gap-20  justify-center items-center  w-full min-h-screen ">
         <ImageDatabaseViewer />
         <div className="flex flex-col items-start justify-start gap-8 ">

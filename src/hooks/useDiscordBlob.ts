@@ -5,8 +5,8 @@ import type {
   DiscordGatewayPayload,
   ImageChunkPacket,
 } from "../interfaces/interface";
-import { SOUTH_PARK_LINES } from "../constants/lyric";
 import { encodeStatetoSouthPark } from "../libs/encode";
+import { useToastStore } from "../zustand/useToastStore";
 
 const activeImageBuffers: Record<
   string,
@@ -91,6 +91,7 @@ export const createDiscordBlobStore = (config: DiscordClusterConfig) => {
           const imageId = `img_${Date.now()}`;
           const chunkSize = 800;
           const chunks: string[] = [];
+          const totalShards = chunks.length;
 
           for (let i = 0; i < fullBase64.length; i += chunkSize) {
             chunks.push(fullBase64.substring(i, i + chunkSize));
@@ -118,6 +119,15 @@ export const createDiscordBlobStore = (config: DiscordClusterConfig) => {
                 }),
               });
 
+              const currentShard = i + 1;
+
+              useToastStore
+                .getState()
+                .showToast(
+                  `Uploading DB Shard ${currentShard}/${totalShards}...`,
+                  "progress",
+                );
+
               if (response.status === 429) {
                 const retryAfter =
                   Number(response.headers.get("Retry-After")) || 2;
@@ -141,6 +151,12 @@ export const createDiscordBlobStore = (config: DiscordClusterConfig) => {
               }
             }
           }
+          useToastStore
+            .getState()
+            .showToast(
+              `Cluster Synced: All ${totalShards} Shards Uploaded!`,
+              "success",
+            );
         };
 
         reader.readAsDataURL(file);

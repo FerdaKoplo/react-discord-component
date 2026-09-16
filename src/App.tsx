@@ -1,7 +1,13 @@
+import Toast from "./components/shared/toast";
 import Home from "./pages/home";
 
 function App() {
-  return <Home />;
+  return (
+    <>
+      <Toast />
+      <Home />
+    </>
+  );
 }
 
 export default App;
