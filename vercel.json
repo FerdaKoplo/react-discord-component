@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/discord-api/(.*)",
+      "destination": "https://discord.com/api/v10/$1"
+    }
+  ]
+}
