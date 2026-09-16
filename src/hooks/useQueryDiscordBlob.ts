@@ -9,7 +9,7 @@ export const queryBlobFromDiscord = async (
 ): Promise<string | null> => {
   try {
     const response = await fetch(
-      `/discord-api/channels/${config.channelId}/messages?limit=100`,
+      `/api/discord/channels/${config.channelId}/...`,
       {
         method: "GET",
         headers: {
