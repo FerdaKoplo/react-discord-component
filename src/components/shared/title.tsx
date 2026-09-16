@@ -1,6 +1,8 @@
 import type React from "react";
 
 type TitleSize =
+  | "sm"
+  | "lg"
   | "xl"
   | "2xl"
   | "3xl"
@@ -18,6 +20,8 @@ interface TitleProps {
 }
 
 const sizeClasses: Record<TitleSize, string> = {
+  sm: "text-sm",
+  lg: "text-lg",
   xl: "text-xl",
   "2xl": "text-2xl",
   "3xl": "text-3xl",

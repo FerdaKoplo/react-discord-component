@@ -8,7 +8,7 @@ const Counter = () => {
     <button
       onClick={() => setDiscordState({ count: count + 1, user: "Kenny" })}
     >
-      South Park Count: {count}
+      {count}
     </button>
   );
 };
